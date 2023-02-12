@@ -29,7 +29,6 @@ function getWorkingHour(empCheck){
     }
 }
 
-
 let totalHrs = 0;
 let totalWorkingdays=0;
 let empDailyWageArr = new Array();
