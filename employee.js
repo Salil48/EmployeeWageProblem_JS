@@ -22,13 +22,13 @@ function getWorkingHours(empCheck)
     }
 }
 
-function calDailyWage(empHrs)
+function calcDailyWage(empHrs)
 {
     return empHrs*WAGE_PER_HOURS
 }
 const findTotal=(totalVal,dailyVal)=>
 {
-    return totalVal;+dailyVal;
+    return totalVal+dailyVal;
 }
 
 let totalEmpHrs=0;
@@ -42,7 +42,7 @@ while(totalEmpHrs<=MAX_HRS_IN_MONTH && totalWorkingDays<=NUM_WORKING_DAYS)
 let empCheck=Math.floor(Math.random()*10)%3;
 let empHrs=getWorkingHours(empCheck);
 totalEmpHrs+=empHrs;
-empDailyWageArr.push(calDailyWage(empHrs));
+empDailyWageArr.push(calcDailyWage(empHrs));
 empDailyMap.set(totalWorkingDays,empHrs);
 
 }
