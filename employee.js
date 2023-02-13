@@ -22,9 +22,13 @@ function getWorkingHours(empCheck)
     }
 }
 
-function calcDailyWage(empHrs)
+function calDailyWage(empHrs)
 {
-    return empHrs*WAGE_PER_HOURS;
+    return empHrs*WAGE_PER_HOURS
+}
+const findTotal=(totalVal,dailyVal)=>
+{
+    return totalVal;+dailyVal;
 }
 
 let totalEmpHrs=0;
@@ -38,13 +42,28 @@ while(totalEmpHrs<=MAX_HRS_IN_MONTH && totalWorkingDays<=NUM_WORKING_DAYS)
 let empCheck=Math.floor(Math.random()*10)%3;
 let empHrs=getWorkingHours(empCheck);
 totalEmpHrs+=empHrs;
-empDailyWageArr.push(calcDailyWage(empHrs));
-empDailyMap.set(totalWorkingDays,calcDailyWage(empHrs));
+empDailyWageArr.push(calDailyWage(empHrs));
+empDailyMap.set(totalWorkingDays,empHrs);
+
 }
 
-console.log(empDailyMap);
-let empWage=calcDailyWage(totalEmpHrs);
-console.log("UC8 - Total Days : " +totalWorkingDays+ " Total Hrs : " +totalEmpHrs+ " Emp Wage : " +empWage);
+let count=0;
+let totalHours=Array.from(empDailyMap.values()).reduce(findTotal,0);
+let totalSalary=empDailyWageArr.filter(dailyWage=>dailyWage>0).reduce(findTotal,0);
+
+console.log("UC9 - Emp Wage with Array : "+ " Total Hours : "+totalHours+" Total Wage : "+totalSalary);
 
 
+let nonWorkingDays=new Array();
+let partWorkingDays=new Array();
+let fullWorkingDays=new Array();
+empDailyMap.forEach((value,key,map)=>
+{
+    if(value==8) fullWorkingDays.push(key);
+    else if(value==4) partWorkingDays.push(key);
+    else nonWorkingDays.push(key);
+})
 
+console.log("Full Working Days : "+fullWorkingDays);
+console.log("Part Working Days : "+partWorkingDays);
+console.log("Non Working Days : "+nonWorkingDays);
